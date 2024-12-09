@@ -1,34 +1,32 @@
-import express from 'express';
-import {HashPassword} from './utils/hash'
-import { ExecuteSQL } from "./sql.js";
+const express = require('express');
+const { routeList } = require('./src/routes/router.js')
+const dotenv = require('dotenv')
+//initialize knex
+const knexConfig = require('./db/knexfile');
+const knex = require('knex')(knexConfig['development'])
+
+const bodyParser = require('body-parser')
+
 const app = express()
-const port = 3000
+
+app.use(bodyParser.json());       // to support JSON-encoded bodies
+app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
+    extended: true
+  }));
+
+dotenv.config();
+
+let port = process.env.PORT || 3000;
 
 app.use(express.json())
+app.use(routeList);
 
 app.get('/', (req, res) => {
     res.send('Hello World!')
 })
 
-
-app.get('/user', (req, res) => {
-    res.send('Providencie um userId')
-})
-
-app.get('/user/:userid', (req, res) => {
-
-    
-    res.send("User name: " + r );
-})
-
-app.post('/user', async (req, res) => {
-    const {username, password} = (req.body)
-    await InsertUser(username, HashPassword(password));
-    res.send("User Created");
-})
-
-
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
 })
+
 
