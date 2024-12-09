@@ -31,7 +31,7 @@ taskRoutes.get('/task/:taskid', (req, res) => {
 })
 
 taskRoutes.post('/task', async (req, res) => {
-    knex('task').insert({ title: req.body.title, category: req.body.category }).then((sql) => {
+    knex('task').insert({ title: req.body.title, category: req.body.category, status: req.body.status }).then((sql) => {
         console.log(sql)
         res.send(sql)
     }).catch((err) => {
@@ -45,7 +45,8 @@ taskRoutes.put('/task/:taskid', async (req, res) => {
     knex('task').where({ id: req.params.taskid }).update(
         {
             title: req.body.title,
-            category: req.body.category
+            category: req.body.category,
+            status: req.body.status
         },
         ['id', 'title', 'category']
     ).then((sql) => {

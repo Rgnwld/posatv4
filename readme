@@ -1,0 +1,76 @@
+# REST API
+
+## Lista de tarefas
+
+### Categoria
+
+`GET /category`
+
+_Recebe as informações de todas as categorias_
+
+[{ "id": 1, "title": "Teste A" }, { "id": 2, "title": "Teste B" }]
+
+`GET /category/:id`
+
+_Recebe as informações de uma categoria especifica_
+
+[{ "id": 1, "title": "Teste A" }]
+
+`GET /category/:id/task`
+
+_Recebe as informações das tarefas de uma categoria especifica_
+
+[{ "id": 1, "title": "Afazer", "status": "Feito" }]
+
+
+`POST /category/`
+
+_Cria uma nova categoria_
+
+body: { "title": "Teste C" }
+
+
+`PUT /category/id`
+
+_Atualiza os valores uma categoria especifica_
+
+body: { "title": "Teste A" }
+
+
+`DELETE /category/id`
+
+_Remove uma categoria especifica_
+
+### Tarefa
+
+`GET /task`
+
+_Recebe as informações de todas as tarefas_
+
+[{ "id": 1, "title": "Teste A", "category": 1, "status": "Feito" }, { "id": 2, "title": "Teste B", "category": 1, "status": "Não iniciado" }]
+
+`GET /task/:id`
+
+_Recebe as informações de uma tarefa especifica_
+
+[{ "id": 1, "title": "Teste A", "status": "Feito" }]
+
+
+`POST /task/`
+
+_Cria uma nova tarefa_
+
+body: { "title": "Teste C", "category": 1, "status": "Não iniciado" }
+
+
+`PUT /task/id`
+
+_Atualiza os valores uma tarefa especifica_
+
+body: { "title": "Teste A", "category": 2, "status": "Não iniciado"  }
+
+
+`DELETE /task/id`
+
+_Remove uma tarefa especifica_
+

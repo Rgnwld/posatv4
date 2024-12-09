@@ -20,6 +20,16 @@ categoryRoutes.get('/category', (req, res) => {
 })
 
 categoryRoutes.get('/category/:categoryid', (req, res) => {
+    knex('category').select('id', 'title').from('category').where('category', req.params.categoryid).then((sql) => {
+        console.log(sql)
+        res.send({sql})
+    }).catch((err) => {
+        console.log(err)
+        res.send('Error')
+    });
+})
+
+categoryRoutes.get('/category/:categoryid/task', (req, res) => {
     knex('category').select('id', 'title').from('task').where('category', req.params.categoryid).then((sql) => {
         console.log(sql)
         res.send({tasks: sql})
