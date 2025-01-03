@@ -4,12 +4,13 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
     "migrate": "knex migrate:latest --knexfile db/knexfile.js",
     "migrate:up": "knex migrate:up --knexfile db/knexfile.js",
     "migrate:down": "knex migrate:down --knexfile db/knexfile.js",
     "migrate:list": "knex migrate:list --knexfile db/knexfile.js",
-    "seed": "knex seed:run --knexfile db/knexfile.js"
+    "seed": "knex seed:run --knexfile db/knexfile.js",
+    "test": "jest",
+    "test:Full": "jest --detectOpenHandles"
   },
   "author": "",
   "license": "ISC",
@@ -23,5 +24,8 @@
     "sqlite": "^5.1.1",
     "sqlite3": "^5.1.7"
   },
-  "type": "commonjs"
+  "type": "commonjs",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
 }
